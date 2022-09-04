@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout
+      uses: actions/checkout@v2
 
-    - name: Executing pull command
+    - name: ssh and deploy
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
