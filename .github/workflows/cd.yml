@@ -19,11 +19,14 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
-          ls -la
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+          clear
+          nvm install node
+          node -v
           cd ~/Sinpie
           git pull origin master
           git status
-          node -v
-          yarn install
-          yarn build
+          npm install
+          npm install -g pm2 serve
+          npm run build
           pm2 restart static-page-server-3000
