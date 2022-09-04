@@ -19,6 +19,7 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
+          ls -la
           cd ~/Sinpie
           git pull origin master
           git status
