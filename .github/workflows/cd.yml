@@ -1,0 +1,27 @@
+name: Build & Deploy
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Executing pull command
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PORT: ${{ secrets.PORT }}
+        KEY: ${{ secrets.SSHKEY }}
+        script: |
+        cd ~/Sinpie
+        git pull origin master
+        git status
+        node -v
+        yarn install
+        yarn build
+        pm2 restart static-page-server-3000
