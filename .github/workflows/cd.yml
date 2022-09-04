@@ -27,7 +27,6 @@ jobs:
           node -v
           cd ~/Sinpie
           git pull origin master
-          git status
           npm install
           npm install -g pm2 serve
           npm run build

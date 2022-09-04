@@ -5,6 +5,7 @@ import './style.css';
 import Cascade1 from "../../../assets/cascade_1.jpg";
 import Cascade2 from "../../../assets/cascade_2.jpg";
 import Cascade3 from "../../../assets/cascade_3.jpg";
+import ProductImg from "../../../assets/prod.jpg";
 import autoplay from "solid-slider/plugins/autoplay";
 
 const dummyProducts:Product[] = [
@@ -13,7 +14,7 @@ const dummyProducts:Product[] = [
     title: "Cool Hoodie",
     price: 69.9,
     description: "Cool hoodie",
-    imgUrl: "assets/prod.jpg",
+    imgUrl: ProductImg,
     ratings: 4
   },
   {
@@ -21,7 +22,7 @@ const dummyProducts:Product[] = [
     title: "Cool Hoodie",
     price: 69.9,
     description: "Cool hoodie",
-    imgUrl: "assets/prod.jpg",
+    imgUrl: ProductImg,
     ratings: 4
   },
   {
@@ -29,7 +30,7 @@ const dummyProducts:Product[] = [
     title: "Cool Hoodie",
     price: 69.9,
     description: "Cool hoodie",
-    imgUrl: "assets/prod.jpg",
+    imgUrl: ProductImg,
     ratings: 4
   },
   {
@@ -37,7 +38,7 @@ const dummyProducts:Product[] = [
     title: "Cool Hoodie",
     price: 69.9,
     description: "Cool hoodie",
-    imgUrl: "assets/prod.jpg",
+    imgUrl: ProductImg,
     ratings: 4
   },
   {
@@ -45,7 +46,7 @@ const dummyProducts:Product[] = [
     title: "Cool Hoodie",
     price: 69.9,
     description: "Cool hoodie",
-    imgUrl: "assets/prod.jpg",
+    imgUrl: ProductImg,
     ratings: 4
   },
   {
@@ -53,7 +54,7 @@ const dummyProducts:Product[] = [
     title: "Cool Hoodie",
     price: 69.9,
     description: "Cool hoodie",
-    imgUrl: "assets/prod.jpg",
+    imgUrl: ProductImg,
     ratings: 4
   }
 ];
