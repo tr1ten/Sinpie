@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$fire-red: #ed1c24;
+// global
+body {
+  font-family: "Lato", sans-serif;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+// header
+.item-text{
+  padding-bottom: 1px;
+  &:hover{
+    padding-bottom: 0px;
+  }
+  
+}
+.nav-item {
+  &:hover {
+    cursor: pointer;
+
+  }
+  @apply m-2 mb-1 p-1 align-middle;
+  font-size: 1rem;
+}
+.nav-bar {
+  @apply flex flex-row justify-between items-center p-2;
+  border-bottom: 2px solid #bd4c13;
+  height: 70px;
+}
+.logo {
+  position: relative;
+  top: 10px;
+  z-index: 2;
+  max-width: 150px;
+  width: 16%;
+  height: auto;
+  rotate: -10deg;
+}
+
+// footer
+.footer-container {
+  width: 100%;
+  bottom: 0;
+  @apply flex flex-col text-sm justify-between items-center;
+
+  .footer-bottom {
+    @apply text-center text-sm font-light p-3 flex flex-row justify-center items-baseline;
+    background-color: #549EBE;
+    color: #f5f5f5;
+    width: 100%;
+  }
+}
+.footer-main {
+  width: 100%;
+  background-color: #1e1e1e;
+  color: rgba(254, 254, 254, 0.827);
+  .footer-title {
+    @apply text-center mb-2;
+    font-weight: bold;
+  }
+
+  @apply flex flex-row justify-between items-start p-2;
+  .links {
+    @apply flex flex-col justify-between items-center p-2 mr-4 ml-3;
+    font-weight: lighter;
+  }
+}
+
+.social-links{
+  @apply flex flex-row justify-between items-center p-2 m-5;
+  font-weight: lighter;
+}
+.social-link{
+  @apply mr-2 text-lg;
+}
+.item-text .s-icon {
+  &:hover{
+    border: none;
+  }
+}
+.s-icon {
+  @apply inline m-1;
+
+}
+.footer-item{
+  margin: 0.1rem;
+}
+.links-section{
+  min-width: 70%;
+  @apply flex flex-row;
+}
+
+// home page
+.corousal-item{
+  max-height: 40%;
+}
+
+.t-hot{
+  color: #FF6723;
+  border-bottom: #FF6723 2px solid;
+}
+.hot-div{
+  @apply flex flex-row items-center  p-2 m-2;
+}
+.hot-txt,.hot {
+  @apply text-xl;
+  @apply font-semibold inline-block;
+}
+.hot-container{
+  @apply flex flex-wrap  items-center justify-center;
+}
+.hot{
+  color: #FF6723;
+}
+
+.product {
+  @apply w-2/5 md:w-3/12 lg:w-1/6 border font-thin flex flex-col justify-between items-center p-2 m-2;
+  text-align: center;
+}
+.prod-img{
+  position: relative;
+}
+.product-fav{
+  z-index: 2;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.dropdown-nav{
+  position: relative;
+  
+}
+.dropdown-container{
+  @apply rounded-sm border bg-white flex flex-col py-3;
+  position: absolute;
+  top: 50px;
+  z-index: 10;
+}
+.dropdown-item{
+  &:hover{
+    background-color: $fire-red;
+    color: white;
+  }
+  @apply p-2 px-3;
+}
