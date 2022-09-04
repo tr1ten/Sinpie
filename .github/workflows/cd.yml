@@ -19,10 +19,10 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
-        cd ~/Sinpie
-        git pull origin master
-        git status
-        node -v
-        yarn install
-        yarn build
-        pm2 restart static-page-server-3000
+          cd ~/Sinpie
+          git pull origin master
+          git status
+          node -v
+          yarn install
+          yarn build
+          pm2 restart static-page-server-3000
