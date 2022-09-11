@@ -1,52 +1,21 @@
+import { Link } from "@solidjs/router";
 import { AiFillFire } from "solid-icons/ai";
 import { FaSolidChevronDown } from "solid-icons/fa";
 import { FiUser } from "solid-icons/fi";
 import { FiHeart } from "solid-icons/fi";
 import { FiShoppingCart } from "solid-icons/fi";
-import { Component, createSignal, JSX } from "solid-js";
-
-type DropDownItemProps = {
-  children: JSX.Element;
-  prependIcon?: JSX.Element;
-  appendIcon?: JSX.Element;
-};
-function DropDownItem({
-  children,
-  prependIcon,
-  appendIcon,
-}: DropDownItemProps): JSX.Element {
-  return (
-    <div class="dropdown-item">
-      {prependIcon && <span class="dropdown-item-icon">{prependIcon}</span>}
-      {children}
-      {appendIcon && <span class="dropdown-item-icon">{appendIcon}</span>}
-    </div>
-  );
-}
-export type Props = {
-  text: JSX.Element;
-  icon?: JSX.Element;
-  children?: JSX.Element | JSX.Element[];
-};
-const NavItem = ({ children, text, icon }: Props) => {
-  const [open, setOpen] = createSignal(false);
-  return (
-    <div onMouseOver={() => setOpen(true)} onMouseLeave={() => setOpen(false)} class="dropdown-nav">
-      <li class="nav-item flex flex-row">
-        <span class="item-text">{text} </span>
-        <span>{icon}</span>
-      </li>
-      {open() && children && <section class="dropdown-container"> {children}</section>}
-    </div>
-  );
-};
+import Logo from "../../../assets/logo.png";
+import { useUser } from "../../hooks/auth";
+import { DropDownItem } from "./DropDownItem";
+import { NavItem } from "./NavItem";
 
 export const NavBar = () => {
+  const user = useUser();
   return (
     <nav class="nav-bar">
       <ul class="flex flex-row ">
         <NavItem
-          text="Hot Picks"
+          text={<Link href="/">Hot Picks</Link>}
           icon={<AiFillFire class="s-icon" fill="red" size="1rem" />}
         ></NavItem>
         <NavItem
@@ -68,13 +37,16 @@ export const NavBar = () => {
           <DropDownItem>Deathnote</DropDownItem>
         </NavItem>
       </ul>
-      <img class="logo" src="assets/logo.png" alt="sinpie"></img>
+      <img class="logo" src={Logo} alt="sinpie"></img>
       <ul class="flex flex-row ">
         <NavItem
           text={
-            <a href="#">
+            user ? <a href="#">
               <FiUser class="s-icon"></FiUser>
-            </a>
+            </a> : 
+            <Link href="/auth">
+              Sign In
+            </Link>
           }
         ></NavItem>
         <NavItem
