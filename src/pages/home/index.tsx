@@ -1,11 +1,5 @@
 import { AiFillFire } from "solid-icons/ai";
 import {
-  createSlider,
-  Slider,
-  SliderButton,
-  SliderProvider,
-} from "solid-slider";
-import {
   DisplayProducts,
   Product,
 } from "../../components/Sinpie/display-products";
@@ -14,60 +8,20 @@ import Cascade1 from "../../../assets/cascade_1.jpg";
 import Cascade2 from "../../../assets/cascade_2.jpg";
 import Cascade3 from "../../../assets/cascade_3.jpg";
 import ProductImg from "../../../assets/prod.jpg";
-import autoplay from "solid-slider/plugins/autoplay";
-import { Carousel, Corousel } from "solid-bootstrap";
+import { Carousel } from "solid-bootstrap";
+import { createSignal, onMount } from "solid-js";
+import { API_ENDPOINT } from "../../utils/auth";
 
-const dummyProducts: Product[] = [
-  {
-    id: 1,
-    title: "Cool Hoodie",
-    price: 69.9,
-    description: "Cool hoodie",
-    imgUrl: ProductImg,
-    ratings: 4,
-  },
-  {
-    id: 1,
-    title: "Cool Hoodie",
-    price: 69.9,
-    description: "Cool hoodie",
-    imgUrl: ProductImg,
-    ratings: 4,
-  },
-  {
-    id: 1,
-    title: "Cool Hoodie",
-    price: 69.9,
-    description: "Cool hoodie",
-    imgUrl: ProductImg,
-    ratings: 4,
-  },
-  {
-    id: 1,
-    title: "Cool Hoodie",
-    price: 69.9,
-    description: "Cool hoodie",
-    imgUrl: ProductImg,
-    ratings: 4,
-  },
-  {
-    id: 1,
-    title: "Cool Hoodie",
-    price: 69.9,
-    description: "Cool hoodie",
-    imgUrl: ProductImg,
-    ratings: 4,
-  },
-  {
-    id: 1,
-    title: "Cool Hoodie",
-    price: 69.9,
-    description: "Cool hoodie",
-    imgUrl: ProductImg,
-    ratings: 4,
-  },
-];
 export const Home = () => {
+  const [products,setProducts] = createSignal([]);
+  onMount(()=>{
+    fetch(API_ENDPOINT + '/products')
+    .then(res=>res.json())
+    .then(data=>{
+      console.log("setting products",data.products);
+      setProducts(data.products);
+    })
+  });
   return (
     <main>
       <Carousel controls={false}>
@@ -89,7 +43,7 @@ export const Home = () => {
           <AiFillFire class="hot s-icon" />
         </div>
       </div>
-      <DisplayProducts products={dummyProducts} />
+      <DisplayProducts products={products()} />
     </main>
   );
 };

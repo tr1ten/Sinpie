@@ -3,19 +3,19 @@ import { Product } from "./product";
 
 export type Product = {
   id: number;
-  title: string;
+  label: string;
   price: number;
   description: string;
-  imgUrl: string;
+  image: string;
   ratings: number;
 };
 type Props = {
   products: Product[];
 };
-export const DisplayProducts = ({ products }: Props) => {
+export const DisplayProducts = (props: Props) => {
   return (
     <section class="hot-container p-3">
-      <For each={products}>{(product) => <Product product={product} />}</For>
+      <For each={props.products}>{(product) => <Product product={product} />}</For>
     </section>
   );
 };

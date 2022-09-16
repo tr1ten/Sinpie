@@ -4,13 +4,32 @@ import { FaSolidChevronDown } from "solid-icons/fa";
 import { FiUser } from "solid-icons/fi";
 import { FiHeart } from "solid-icons/fi";
 import { FiShoppingCart } from "solid-icons/fi";
+import { createEffect, createSignal, For, onMount, Show } from "solid-js";
 import Logo from "../../../assets/logo.png";
 import { useUser } from "../../hooks/auth";
+import { API_ENDPOINT } from "../../utils/auth";
 import { DropDownItem } from "./DropDownItem";
 import { NavItem } from "./NavItem";
 
+declare global {
+  interface Window {
+      refreshUser:()=>void;
+  }
+}
+
 export const NavBar = () => {
-  const user = useUser();
+  const [user,refreshUser] = useUser();
+  const [animeCats,setAnimeCats] = createSignal([]);
+  const [itemCats,setItemCats] = createSignal([]);
+  onMount(async ()=>{
+    window.refreshUser = refreshUser;
+    const res = await fetch(API_ENDPOINT+"/animeCats").then((res)=>res.json());
+    const {productCategories} = await fetch(API_ENDPOINT+"/productCats").then((res)=>res.json());
+    setAnimeCats(res.animeCategories);
+    console.log("res ",res,productCategories);
+    setItemCats(productCategories);
+
+  })
   return (
     <nav class="nav-bar">
       <ul class="flex flex-row ">
@@ -22,31 +41,35 @@ export const NavBar = () => {
           text="Types"
           icon={<FaSolidChevronDown class="s-icon" fill="red" size="1rem" />}
         >
-          <DropDownItem>Tees</DropDownItem>
-          <DropDownItem>Hoodies</DropDownItem>
-          <DropDownItem>Shirts</DropDownItem>
+          <For each={itemCats()}>
+            {(cat) => <DropDownItem>{cat.label}</DropDownItem>}
+          </For>
         </NavItem>
         <NavItem
           text="Animes"
           icon={<FaSolidChevronDown class="s-icon" fill="red" size="1rem" />}
         >
-          <DropDownItem>One Piece</DropDownItem>
-          <DropDownItem>Naruto</DropDownItem>
-          <DropDownItem>Bleach</DropDownItem>
-          {/* Here comes my favorite */}
-          <DropDownItem>Deathnote</DropDownItem>
+          <For each={animeCats()}>
+            {(cat) => <DropDownItem>{cat.label}</DropDownItem>}
+          </For>
         </NavItem>
       </ul>
       <img class="logo" src={Logo} alt="sinpie"></img>
       <ul class="flex flex-row ">
         <NavItem
-          text={
-            user ? <a href="#">
-              <FiUser class="s-icon"></FiUser>
-            </a> : 
-            <Link href="/auth">
-              Sign In
-            </Link>
+          text={  
+            <>
+            <Show when={Boolean(user())}>
+                <a href="#">
+                  {user().firstName} 
+                  &nbsp;
+                <FiUser class="s-icon"></FiUser>
+              </a>
+            </Show>
+            <Show when={!Boolean(user())}>
+              <Link href="/auth">Sign In </Link>
+            </Show>
+            </>
           }
         ></NavItem>
         <NavItem
