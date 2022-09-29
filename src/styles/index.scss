@@ -140,9 +140,75 @@ body {
   z-index: 10;
 }
 .dropdown-item{
+  cursor: pointer;
   &:hover{
     background-color: $fire-red;
     color: white;
   }
   @apply p-2 px-3;
+}
+
+.r-icon{
+  margin: 0.1em;
+  color: $fire-red;
+}
+
+.amount {
+  @apply font-light text-center p-2 text-lg;
+}
+.ico{
+  @apply inline ml-2;
+}
+
+.cbtn{
+  border: none;
+  color: white;
+  &:hover{
+    color: white;
+    border: none;
+  }
+  &:focus{
+    // disable blue corners around button when focus
+    outline: 0;
+    border: none;
+    background-color: $fire-red;
+  }
+}
+
+.amount-symbol{
+  position: relative;
+  top: -4px;
+}
+
+.horizontal-scroll-container{
+  @apply flex flex-row;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  width: 3000px;
+}
+.horizontal-scroll-item{
+  @apply p-2 m-1;
+  min-width: 200px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.horizontal-scroll-wrapper{
+  width: 100%;
+  overflow: auto;
+}
+
+.btn-filter{
+  color: white;
+  border: none;
+  &:hover{
+    border: none;
+    color: white;
+  }
+  &:focus{
+    color: white;
+    border: none;
+    outline: none;
+  }
 }

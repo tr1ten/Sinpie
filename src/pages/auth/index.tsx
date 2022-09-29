@@ -20,7 +20,6 @@ const AuthPage = () => {
   const [submitStatus, setSubmitStatus] = createSignal(0);
   const navigator = useNavigate();
   createEffect(() => {
-    console.log("setting register");
     setRegister(query.register == "true");
   });
   const [form, setForm] = createStore<AuthForm>({

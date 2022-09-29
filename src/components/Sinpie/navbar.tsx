@@ -26,7 +26,6 @@ export const NavBar = () => {
     const res = await fetch(API_ENDPOINT+"/animeCats").then((res)=>res.json());
     const {productCategories} = await fetch(API_ENDPOINT+"/productCats").then((res)=>res.json());
     setAnimeCats(res.animeCategories);
-    console.log("res ",res,productCategories);
     setItemCats(productCategories);
 
   })
@@ -42,7 +41,7 @@ export const NavBar = () => {
           icon={<FaSolidChevronDown class="s-icon" fill="red" size="1rem" />}
         >
           <For each={itemCats()}>
-            {(cat) => <DropDownItem>{cat.label}</DropDownItem>}
+            {(cat) => <DropDownItem href={"/product-category/"+cat.slug}>{cat.label}</DropDownItem>}
           </For>
         </NavItem>
         <NavItem
@@ -81,9 +80,9 @@ export const NavBar = () => {
         ></NavItem>
         <NavItem
           text={
-            <a href="#">
+            <Link href="/cart">
               <FiShoppingCart class="s-icon"></FiShoppingCart>
-            </a>
+            </Link>
           }
         ></NavItem>
       </ul>

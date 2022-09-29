@@ -1,14 +1,23 @@
 import { For } from "solid-js";
 import { Product } from "./product";
 
+export type ProductCategory = {
+  id: number;
+  label: string;
+  slug:string;
+}
+
 export type Product = {
   id: number;
+  shopUrl: string;
   label: string;
   price: number;
   description: string;
   image: string;
   ratings: number;
+  productCategory: ProductCategory;
 };
+
 type Props = {
   products: Product[];
 };
