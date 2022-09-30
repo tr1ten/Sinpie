@@ -1,6 +1,7 @@
 import { Alert } from "solid-bootstrap";
 import { createSignal, onMount, createEffect, Show, For } from "solid-js";
 import FallBack from "../../../components/common/Fallback";
+import { SingInCard } from "../../../components/common/SingInCard";
 import { DisplayProducts, Product } from "../../../components/Sinpie/DisplayProducts";
 import { HorizontalScroll } from "../../../components/UI/HorizontalScroll";
 import { useUser } from "../../../hooks/auth";
@@ -15,7 +16,7 @@ export default function FavoritesPage() {
         document.title = "Favorites | Sinpie";
     });
     createEffect(async () => {
-        if (!user()) return;
+        if (!user()) return setLoading(false);
         const res = await fetch(`${API_ENDPOINT}/user/favorites`, {
         method: "GET",
         headers: {
@@ -24,6 +25,7 @@ export default function FavoritesPage() {
         },
         }).then((res) => res.json());
         if (res.error) {
+            setLoading(false);
         return;
         }
         setFavorites(res.favorites);
@@ -38,13 +40,15 @@ export default function FavoritesPage() {
         </Alert>
     </section>;
 
-
     return (
         <section class="p-3">
+            <Show when={user()} fallback={<SingInCard title="Favorites" />}>
+
         <h1 class="text-xl"> Your Favorites</h1>
         <Show when={!loading()} fallback={<FallBack />}>
 
             {favorites().length==0 ? EmptyFavPlaceholder : <DisplayProducts products={favorites()} />}
+        </Show>
         </Show>
         </section>
     );

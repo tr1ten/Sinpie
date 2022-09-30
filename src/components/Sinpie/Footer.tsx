@@ -36,7 +36,7 @@ export const Footer = () => {
        </div>
     <div class="footer-bottom">
         <p>Sinpie is an Open Source Project created for fun by tr1ten, hosted on </p>
-        <a href="https://github.com" class="font-bold ml-1 justify-center">Github <AiFillGithub class="s-icon" size="1.3rem" /></a>
+        <a href="https://github.com/tr1ten/Sinpie" class="font-bold ml-1 justify-center">Github <AiFillGithub class="s-icon" size="1.3rem" /></a>
     </div>
 
     </footer>
