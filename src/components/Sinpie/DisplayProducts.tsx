@@ -1,5 +1,5 @@
 import { For } from "solid-js";
-import { Product } from "./product";
+import { Product } from "./Product";
 
 export type ProductCategory = {
   id: number;

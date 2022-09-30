@@ -1,15 +1,16 @@
 import { useParams } from "@solidjs/router";
 import { Accessor, createEffect, createSignal, JSX, onMount, Show } from "solid-js";
-import { DisplayProducts, Product } from "../../components/Sinpie/display-products";
+import { DisplayProducts, Product } from "../../components/Sinpie/DisplayProducts";
 import { API_ENDPOINT } from "../../utils/auth";
 import { Button, Card, Image } from "solid-bootstrap";
 import Rating from "../../components/Sinpie/Rating";
 import { FaSolidCartShopping, FaSolidForward } from "solid-icons/fa";
 import Price from "../../components/Sinpie/Price";
 import { HorizontalScroll } from "../../components/UI/HorizontalScroll";
-import { Product as ProductC} from "../../components/Sinpie/product";
+import { Product as ProductC} from "../../components/Sinpie/Product";
 import { CommentSection } from "../../components/Sinpie/CommentSection";
 import { TiTick } from 'solid-icons/ti'
+import { useUser } from "../../hooks/auth";
 
 export function ProductPage(): JSX.Element {
     const params = useParams();
@@ -63,6 +64,7 @@ export function ProductPage(): JSX.Element {
 function ActionCard(product:Accessor<Product>) {
     const [quantity, setQuantity] = createSignal<number>(0);
     const [disabled, setDisabled] = createSignal<boolean>(false);
+    const [user,refreshUser] = useUser();
     createEffect(()=>{
         if(quantity() > 0) setDisabled(true);
         else setDisabled(false);
@@ -81,6 +83,7 @@ function ActionCard(product:Accessor<Product>) {
         window.location.href = product().shopUrl;
     }
     const addToCart = () => {
+        if(!user()) window.location.href = '/auth';
         // add to cart
         fetch(`${API_ENDPOINT}/cart/add`,{
             method: 'POST',

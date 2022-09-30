@@ -185,7 +185,7 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
-  width: 3000px;
+  width: 1000px;
 }
 .horizontal-scroll-item{
   @apply p-2 m-1;
@@ -211,4 +211,8 @@ body {
     border: none;
     outline: none;
   }
+}
+
+main{
+  min-height: calc(100vh -  300px);
 }

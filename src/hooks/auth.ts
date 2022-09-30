@@ -7,7 +7,7 @@ export function useUser() {
   const [getUser, setUser] = createSignal(null);
   const refreshUser = () => {
     const token = sessionStorage.getItem("token");
-    if (!token) return;
+    if (!token) return setUser(null);
     fetch(API_ENDPOINT + "/user", {
       method: "GET",
       headers: {

@@ -54,7 +54,7 @@ const AuthPage = () => {
     if(window.refreshUser) {window.refreshUser();}
   };
   return (
-    <main>
+    <main >
       <Card class="d-flex justify-center mx-auto w-3/6  p-2 my-4">
         <Card.Header class="text-center m-2 font-bold bg-transparent">
           {register() ? "Register" : "Sign In"}

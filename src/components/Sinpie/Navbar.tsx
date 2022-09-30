@@ -28,7 +28,11 @@ export const NavBar = () => {
     setAnimeCats(res.animeCategories);
     setItemCats(productCategories);
 
-  })
+  });
+  const onLogout = ()=>{
+      window.sessionStorage.removeItem('token');
+      window.refreshUser();
+  }
   return (
     <nav class="nav-bar">
       <ul class="flex flex-row ">
@@ -59,8 +63,8 @@ export const NavBar = () => {
           text={  
             <>
             <Show when={Boolean(user())}>
-                <a href="#">
-                  {user().firstName} 
+                <a href="/">
+                <span class="p-1" onClick={onLogout}>Logout</span> 
                   &nbsp;
                 <FiUser class="s-icon"></FiUser>
               </a>

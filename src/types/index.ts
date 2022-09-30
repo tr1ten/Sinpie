@@ -1,4 +1,4 @@
-import { Product } from "../components/Sinpie/display-products";
+import { Product } from "../components/Sinpie/DisplayProducts";
 
 export type AuthForm = {
     email: string;

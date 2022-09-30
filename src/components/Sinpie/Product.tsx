@@ -1,4 +1,4 @@
-import { Product as ProductType } from "./display-products";
+import { Product as ProductType } from "./DisplayProducts";
 import { createSignal, onMount } from "solid-js";
 import { AiOutlineHeart, AiFillHeart } from "solid-icons/ai";
 import { API_ENDPOINT, getToken } from "../../utils/auth";
@@ -13,6 +13,7 @@ export const Product = ({ product, fullWidth=false }: Props) => {
   const [isFav, isFavSetter] = createSignal(false);
   const [user, refreshUser] = useUser();
   onMount(() => {
+    if(!user()) return;
     try {
       fetch(API_ENDPOINT + `/${product.id}/favorite`, {
         method: "GET",
