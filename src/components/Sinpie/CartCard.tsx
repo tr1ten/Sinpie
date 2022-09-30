@@ -23,7 +23,6 @@ const CardCard = (props: {mycart: Cart}) => {
         setTotal(sum);
     })
     const changeQuantity = async (item:CartItemType,q:number) => {
-        console.log("changing quantity",q);
         try{
 
             const res = await fetch(`${API_ENDPOINT}/cart/update`, {

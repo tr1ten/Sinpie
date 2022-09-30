@@ -25,7 +25,6 @@ const CartPage = () => {
             }
         }).then(res => res.json());
         setCart(res.cart);
-        console.log(res.cart);
     })
     const signInCard = <section class="h-full w-full flex items-center justify-center p-5"><Card class="text-center">
         <Card.Body>

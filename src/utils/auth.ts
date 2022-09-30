@@ -1,5 +1,5 @@
 
-export const API_ENDPOINT = "http://localhost:3001";
+export const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 export const AUTH_ENDPOINT = `${API_ENDPOINT}/auth`;
 export function getToken(){
     return sessionStorage.getItem("token");

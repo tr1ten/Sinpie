@@ -19,7 +19,6 @@ export const Home = () => {
     fetch(API_ENDPOINT + '/products')
     .then(res=>res.json())
     .then(data=>{
-      console.log("setting products",data.products);
       setProducts(data.products);
     })
   });
