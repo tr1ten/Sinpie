@@ -35,7 +35,7 @@ export default function CartItem(props: CartItemProps): JSX.Element {
                         class="w-1/5 "
                     />
                     <div class="flex flex-col justify-between ml-2">
-                        <Link href={`/product/${cartItem().product.id}`}>
+                        <Link title={cartItem().product.label} href={`/product/${cartItem().product.id}`}>
                             <h1 class="text-xl">{cartItem().product.label}</h1>
                         </Link>
                         <h1 class="text-xl">₹{totalPrice}</h1>

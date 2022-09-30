@@ -25,7 +25,10 @@ export default function ProductCategoryPage(): JSX.Element {
       .then(({ products }) => setProducts(products));
   });
   createEffect(() => {
-    setProductCategory(products()[0]?.productCategory);
+    const pcat= products()[0]?.productCategory;
+    document.title = pcat.label; 
+    setProductCategory(pcat);
+
   });
   const onSortby = (key) => {
     switch (key) {

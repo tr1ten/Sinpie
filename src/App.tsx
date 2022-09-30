@@ -7,6 +7,7 @@ import AuthPage from "./pages/auth";
 import { ProductPage } from "./pages/product/[pid]";
 import ProductCategoryPage from "./pages/product-category/[pcat]";
 import CartPage from "./pages/cart";
+import FavoritesPage from "./pages/user/favorites";
 
 const App: Component = () => {
   return (
@@ -17,6 +18,7 @@ const App: Component = () => {
         <Route path="/product/:pid" component={ProductPage} />
         <Route path="/product-category/:pcat" component={ProductCategoryPage} />
         <Route path="/cart" component={CartPage} /> 
+        <Route path="/user/favorites" component={FavoritesPage} />
       </Routes>
 
     </Layout>

@@ -8,7 +8,7 @@ import {
   useSearchParams,
 } from "@solidjs/router";
 import { Col, Form, Row, Card, Button, Alert } from "solid-bootstrap";
-import { createEffect, createSignal, Show } from "solid-js";
+import { createEffect, createSignal, onMount, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { AuthForm } from "../../types";
 import { loginUser, registerUser } from "../../utils/auth";
@@ -20,6 +20,8 @@ const AuthPage = () => {
   const [submitStatus, setSubmitStatus] = createSignal(0);
   const navigator = useNavigate();
   createEffect(() => {
+    if(query.register=="true") document.title = "Register";
+    else document.title = "Login";
     setRegister(query.register == "true");
   });
   const [form, setForm] = createStore<AuthForm>({

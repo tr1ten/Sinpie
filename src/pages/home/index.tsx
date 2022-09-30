@@ -15,6 +15,7 @@ import { API_ENDPOINT } from "../../utils/auth";
 export const Home = () => {
   const [products,setProducts] = createSignal([]);
   onMount(()=>{
+    document.title = "Sinpie";
     fetch(API_ENDPOINT + '/products')
     .then(res=>res.json())
     .then(data=>{

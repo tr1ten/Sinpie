@@ -23,6 +23,7 @@ export function ProductPage(): JSX.Element {
     })
     createEffect(()=>{
         if(!product()) return;
+        document.title = product().label;
         fetch(`${API_ENDPOINT}/products/?pcat=${product().productCategory.slug}`)
         .then(res=>res.json())
         .then(({products})=>setSimilarProducts(products));

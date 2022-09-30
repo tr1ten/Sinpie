@@ -37,7 +37,7 @@ export const NavBar = () => {
     <nav class="nav-bar">
       <ul class="flex flex-row ">
         <NavItem
-          text={<Link href="/">Hot Picks</Link>}
+          text={<Link title="Hot Picks" href="/">Hot Picks</Link>}
           icon={<AiFillFire class="s-icon" fill="red" size="1rem" />}
         ></NavItem>
         <NavItem
@@ -77,9 +77,9 @@ export const NavBar = () => {
         ></NavItem>
         <NavItem
           text={
-            <a href="#">
+            <Link href="/user/favorites">
               <FiHeart class="s-icon"></FiHeart>
-            </a>
+            </Link>
           }
         ></NavItem>
         <NavItem
