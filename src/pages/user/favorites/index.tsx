@@ -3,6 +3,7 @@ import { createSignal, onMount, createEffect, Show, For } from "solid-js";
 import FallBack from "../../../components/common/Fallback";
 import { SingInCard } from "../../../components/common/SingInCard";
 import { DisplayProducts, Product } from "../../../components/Sinpie/DisplayProducts";
+import Loading from "../../../components/Sinpie/Loading";
 import { HorizontalScroll } from "../../../components/UI/HorizontalScroll";
 import { useUser } from "../../../hooks/auth";
 import { API_ENDPOINT } from "../../../utils/auth";
@@ -45,7 +46,7 @@ export default function FavoritesPage() {
             <Show when={user()} fallback={<SingInCard title="Favorites" />}>
 
         <h1 class="text-xl"> Your Favorites</h1>
-        <Show when={!loading()} fallback={<FallBack />}>
+        <Show when={!loading()} fallback={Loading}>
 
             {favorites().length==0 ? EmptyFavPlaceholder : <DisplayProducts products={favorites()} />}
         </Show>

@@ -11,6 +11,7 @@ import { Product as ProductC} from "../../components/Sinpie/Product";
 import { CommentSection } from "../../components/Sinpie/CommentSection";
 import { TiTick } from 'solid-icons/ti'
 import { useUser } from "../../hooks/auth";
+import Loading from "../../components/Sinpie/Loading";
 
 export function ProductPage(): JSX.Element {
     const params = useParams();
@@ -32,7 +33,7 @@ export function ProductPage(): JSX.Element {
     const rating = Math.random() * 5;
     // temperary shop url
     const shopUrl = "https://comicsense.in";
-    return <Show when={product()} fallback={<h1>Loading product...</h1>}>
+    return <Show when={product()} fallback={Loading}>
         <main>
         <section class="flex flex-col md:flex-row w-full p-4 items-center md:items-start">
             <Card class="w-1/2">

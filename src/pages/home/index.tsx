@@ -9,8 +9,9 @@ import Cascade2 from "../../../assets/cascade_2.jpg";
 import Cascade3 from "../../../assets/cascade_3.jpg";
 import ProductImg from "../../../assets/prod.jpg";
 import { Carousel } from "solid-bootstrap";
-import { createSignal, onMount } from "solid-js";
+import { createSignal, onMount, Show } from "solid-js";
 import { API_ENDPOINT } from "../../utils/auth";
+import Loading from "../../components/Sinpie/Loading";
 
 export const Home = () => {
   const [products,setProducts] = createSignal([]);
@@ -43,7 +44,9 @@ export const Home = () => {
           <AiFillFire class="hot s-icon" />
         </div>
       </div>
+      <Show when={products()?.length>0} fallback={Loading}>
       <DisplayProducts products={products()} />
+      </Show>
     </main>
   );
 };

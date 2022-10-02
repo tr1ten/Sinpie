@@ -10,7 +10,7 @@ import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
 
 
-const CardCard = (props: {mycart: Cart}) => {
+const CardCard = (props: {mycart: Cart,onOrder:()=>void}) => {
     const [cart,setCart] = createSignal<Cart>(props.mycart);
     const [total,setTotal] = createSignal(0);
     const [loading,setLoading] = createSignal(false);
@@ -65,6 +65,7 @@ const CardCard = (props: {mycart: Cart}) => {
             const tempCart = JSON.parse(JSON.stringify(cart()));
             tempCart.cartItems = [];
             setCart(tempCart);
+            props.onOrder();
 
         }
         setLoading(false);

@@ -10,6 +10,7 @@ import {
   Product,
   ProductCategory,
 } from "../../components/Sinpie/DisplayProducts";
+import Loading from "../../components/Sinpie/Loading";
 import { API_ENDPOINT } from "../../utils/auth";
 
 export default function ProductCategoryPage(): JSX.Element {
@@ -26,7 +27,7 @@ export default function ProductCategoryPage(): JSX.Element {
   });
   createEffect(() => {
     const pcat= products()[0]?.productCategory;
-    document.title = pcat.label; 
+    if(pcat) {document.title = pcat.label;} 
     setProductCategory(pcat);
 
   });
@@ -52,7 +53,7 @@ export default function ProductCategoryPage(): JSX.Element {
       .then(({ products }) => setProducts(products));
   }
   return (
-    <Show when={Boolean(productCategory())} fallback={FallBack}>
+    <Show when={Boolean(productCategory())} fallback={Loading}>
       <div class="m-4">
         <h1 class="text-center text-2xl">{productCategory().label}</h1>
         <div class="m-4 p-2 flex justify-around items-center bg-gray-500 rounded">
