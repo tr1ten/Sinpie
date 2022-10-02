@@ -17,3 +17,11 @@ export type Cart = {
     cartItems: CartItem[];
     total: number;
 }
+
+export type NavProps = {
+    itemCats: () => Array<{ label: string; slug: string; }>;
+    animeCats: () => Array<{ label: string; slug: string; }>;
+    isLogin: () => boolean;
+    user: () => any;
+    onLogout: () => void;
+  };

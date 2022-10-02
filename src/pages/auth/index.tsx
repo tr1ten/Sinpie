@@ -68,7 +68,7 @@ const AuthPage = () => {
               <Form.Group
                 as={Row}
                 class="mb-3"
-                controlId="formPlaintextPassword"
+                controlId="formPlaintextName"
               >
                 <Form.Label column sm="2">
                   Name
@@ -82,7 +82,7 @@ const AuthPage = () => {
                 </Col>
               </Form.Group>
             </Show>
-            <Form.Group as={Row} class="mb-3" controlId="formPlaintextPassword">
+            <Form.Group as={Row} class="mb-3" controlId="formPlaintexMail">
               <Form.Label column sm="2">
                 Email
               </Form.Label>
@@ -113,7 +113,7 @@ const AuthPage = () => {
               <Form.Group
                 as={Row}
                 class="mb-3"
-                controlId="formPlaintextPassword"
+                controlId="formPlaintextConfirmPassword"
               >
                 <Form.Label column sm="2">
                   Confirm Passowrd
