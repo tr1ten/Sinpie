@@ -67,6 +67,7 @@ function ActionCard(product:Accessor<Product>) {
     const [quantity, setQuantity] = createSignal<number>(0);
     const [disabled, setDisabled] = createSignal<boolean>(false);
     const [user,refreshUser] = useUser();
+    const [loading, setLoading] = createSignal<boolean>(false);
     createEffect(()=>{
         if(quantity() > 0) setDisabled(true);
         else setDisabled(false);
@@ -87,6 +88,7 @@ function ActionCard(product:Accessor<Product>) {
     const addToCart = () => {
         if(!user()) window.location.href = '/auth';
         // add to cart
+        setLoading(true);
         fetch(`${API_ENDPOINT}/cart/add`,{
             method: 'POST',
             headers: {
@@ -97,13 +99,13 @@ function ActionCard(product:Accessor<Product>) {
                 pid: product().id,
                 qty: 1
             })
-        }).then(()=>setQuantity(quantity()+1));
+        }).then(()=>setQuantity(quantity()+1) && setLoading(false));
     }
     return <Card class="mt-3 mb-3">
         <Card.Body class="flex flex-col">
             <Price price={product().price} />
             <Button
-            disabled={disabled()}
+            disabled={loading() || disabled()}
             variant="none"
             onClick={addToCart}
             class="bg-orange-600 hover:bg-orange-600 cbtn">

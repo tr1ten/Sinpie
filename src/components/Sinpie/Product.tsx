@@ -28,8 +28,9 @@ export const Product = ({ product, fullWidth=false }: Props) => {
     }
   });
   function toggleFav() {
+    isFavSetter(!isFav());
     if (!user()) {
-      return isFavSetter(!isFav());
+      return;
     }
     fetch(API_ENDPOINT + `/${product.id}/favorite`, {
       method: "POST",
@@ -39,7 +40,6 @@ export const Product = ({ product, fullWidth=false }: Props) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => isFavSetter(data.favorite));
   }
   const navigate = useNavigate();
   return (

@@ -38,7 +38,7 @@ function MenuOverlay(props: Props) {
       classList={{ "show": props.show }}
       class="menu-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"
     >
-      <section class="menu-bar flex flex-col bg-white h-full">
+      <section onClick={(e)=>e.stopPropagation()} class="menu-bar flex flex-col bg-white h-full">
         <div class="w-full flex justify-end bg-white">
           <ImCross class="ico p-4 cursor-pointer" onClick={props.onClose} />{" "}
         </div>
@@ -82,7 +82,7 @@ function MenuOverlay(props: Props) {
             icon={<FiUser class="s-icon"  />}
               text={
                 <>
-                  <Show when={props.isLogin}>
+                  <Show when={props.isLogin()}>
                     <a href="/">
                       <span class="p-1" onClick={props.onLogout}>
                         Logout
@@ -90,7 +90,7 @@ function MenuOverlay(props: Props) {
                       &nbsp;
                     </a>
                   </Show>
-                  <Show when={!props.isLogin}>
+                  <Show when={!props.isLogin()}>
                     <Link href="/auth">Sign In </Link>
                   </Show>
                 </>

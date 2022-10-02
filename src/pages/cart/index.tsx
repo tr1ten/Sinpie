@@ -6,6 +6,7 @@ import { createEffect, createSignal, onMount, Show } from "solid-js";
 import FallBack from "../../components/common/Fallback";
 import { SingInCard } from "../../components/common/SingInCard";
 import CardCard from "../../components/Sinpie/CartCard";
+import Loading from "../../components/Sinpie/Loading";
 import { useUser } from "../../hooks/auth";
 import { Cart } from "../../types";
 import { API_ENDPOINT } from "../../utils/auth";
@@ -14,13 +15,13 @@ const CartPage = () => {
     const [cart,setCart] = createSignal<Cart>(null);
     const [user,something] = useUser();
     const [orderPlaced,setOrderPlaced] = createSignal(false);
+    const [loading,setLoading] = createSignal(false);
 
     createEffect(()=>{
         if(orderPlaced()){
-            // automatically hide the alert after 3 seconds
             setTimeout(()=>{
                 setOrderPlaced(false);
-            },3000);
+            },10000);
         }
     })
     function handleOrder(){
@@ -31,6 +32,7 @@ const CartPage = () => {
     })
     createEffect(async () => {
         if(!user()) return;
+        setLoading(true);
         const res = await fetch(`${API_ENDPOINT}/cart`,{
             method: 'GET',
             headers: {
@@ -38,9 +40,11 @@ const CartPage = () => {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         }).then(res => res.json());
+        setLoading(false);
         setCart(res.cart);
     })
-    return (<Show when={cart()} fallback={<SingInCard title="Cart" />}>
+    return (<Show when={!loading()} fallback={Loading}>
+        <Show when={cart()} fallback={<SingInCard title="Cart" />}>
         <section class="p-3">
             <h1 class="text-xl"> Your Cart</h1>
             <CardCard onOrder={handleOrder} mycart={cart()}/>
@@ -54,6 +58,7 @@ const CartPage = () => {
             </Show>
         </section>
             
+    </Show>
     </Show>);
 }
 export default CartPage;

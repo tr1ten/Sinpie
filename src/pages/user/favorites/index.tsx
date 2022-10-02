@@ -18,6 +18,7 @@ export default function FavoritesPage() {
     });
     createEffect(async () => {
         if (!user()) return setLoading(false);
+        setLoading(true);
         const res = await fetch(`${API_ENDPOINT}/user/favorites`, {
         method: "GET",
         headers: {
