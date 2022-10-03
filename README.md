@@ -1,5 +1,5 @@
 ## What is Sinpie?
-Sinpie is a simple maketplace which index products from several online stores. It is purely non profitable and we don't make use of any affialiate link in our redirects.
+Sinpie is a simple marketplace that index products from several online stores. It is purely nonprofit and we don't make use of any affiliate link in our redirects.
 ## Set up
 
 First install the npm dependencies:
