@@ -1,5 +1,4 @@
-import { createEffect, createMemo, createSignal, Match, onMount, Switch } from "solid-js";
-import { useUser } from "../../hooks/auth";
+import { Accessor, createEffect, createMemo, createSignal, Match, onMount, Switch } from "solid-js";
 import { useDimension } from "../../hooks/responsive";
 import { API_ENDPOINT } from "../../utils/auth";
 import { DesktopNavBar } from "./DesktopNavBar";
@@ -7,11 +6,11 @@ import MobNavBar from "./MobNavBar";
 
 declare global {
   interface Window {
-      refreshUser:()=>void;
+      user: Accessor<any>;
+      refreshUser: () => void;
   }
 }
 export const NavBar = () => {
-  const [user,refreshUser] = useUser();
   const dimensions = useDimension();
   const [animeCats,setAnimeCats] = createSignal([]);
   const [itemCats,setItemCats] = createSignal([]);
@@ -19,7 +18,6 @@ export const NavBar = () => {
     return dimensions().width < 768;
   });
   onMount(async ()=>{
-    window.refreshUser = refreshUser;
     const res = await fetch(API_ENDPOINT+"/animeCats").then((res)=>res.json());
     const {productCategories} = await fetch(API_ENDPOINT+"/productCats").then((res)=>res.json());
     setAnimeCats(res.animeCategories);
@@ -35,10 +33,10 @@ export const NavBar = () => {
     <nav class="nav-bar">
       <Switch>
         <Match when={!isMobile()}>
-          <DesktopNavBar animeCats={animeCats} isLogin={()=>Boolean(user())} itemCats={itemCats} onLogout={onLogout} user={user}></DesktopNavBar>
+          <DesktopNavBar animeCats={animeCats} isLogin={()=>Boolean(window.user())} itemCats={itemCats} onLogout={onLogout} user={window.user}></DesktopNavBar>
         </Match>
         <Match when={isMobile()}>
-          <MobNavBar animeCats={animeCats} isLogin={()=>Boolean(user())} itemCats={itemCats} onLogout={onLogout} user={user}/>
+          <MobNavBar animeCats={animeCats} isLogin={()=>Boolean(window.user())} itemCats={itemCats} onLogout={onLogout} user={window.user}/>
         </Match>
       </Switch>
     </nav>

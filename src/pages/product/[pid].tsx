@@ -10,7 +10,6 @@ import { HorizontalScroll } from "../../components/UI/HorizontalScroll";
 import { Product as ProductC} from "../../components/Sinpie/Product";
 import { CommentSection } from "../../components/Sinpie/CommentSection";
 import { TiTick } from 'solid-icons/ti'
-import { useUser } from "../../hooks/auth";
 import Loading from "../../components/Sinpie/Loading";
 
 export function ProductPage(): JSX.Element {
@@ -21,14 +20,14 @@ export function ProductPage(): JSX.Element {
         fetch(`${API_ENDPOINT}/product/${params.pid}`)
         .then(res=>res.json())
         .then(({product})=>setProduct(product));
-    })
+    },params)
     createEffect(()=>{
         if(!product()) return;
         document.title = product().label;
         fetch(`${API_ENDPOINT}/products/?pcat=${product().productCategory.slug}`)
         .then(res=>res.json())
         .then(({products})=>setSimilarProducts(products));
-    })
+    },product)
     // temperary rating random 1 to 5
     const rating = Math.random() * 5;
     // temperary shop url
@@ -66,7 +65,6 @@ export function ProductPage(): JSX.Element {
 function ActionCard(product:Accessor<Product>) {
     const [quantity, setQuantity] = createSignal<number>(0);
     const [disabled, setDisabled] = createSignal<boolean>(false);
-    const [user,refreshUser] = useUser();
     const [loading, setLoading] = createSignal<boolean>(false);
     createEffect(()=>{
         if(quantity() > 0) setDisabled(true);
@@ -86,7 +84,7 @@ function ActionCard(product:Accessor<Product>) {
         window.location.href = product().shopUrl;
     }
     const addToCart = () => {
-        if(!user()) window.location.href = '/auth';
+        if(!window.user()) window.location.href = '/auth';
         // add to cart
         setLoading(true);
         fetch(`${API_ENDPOINT}/cart/add`,{

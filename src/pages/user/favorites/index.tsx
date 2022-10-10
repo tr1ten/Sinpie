@@ -5,19 +5,17 @@ import { SingInCard } from "../../../components/common/SingInCard";
 import { DisplayProducts, Product } from "../../../components/Sinpie/DisplayProducts";
 import Loading from "../../../components/Sinpie/Loading";
 import { HorizontalScroll } from "../../../components/UI/HorizontalScroll";
-import { useUser } from "../../../hooks/auth";
 import { API_ENDPOINT } from "../../../utils/auth";
 
 // this will display all user favorites
 export default function FavoritesPage() {
-    const [user, something] = useUser();
     const [favorites, setFavorites] = createSignal<Product[]>([]);
     const [loading,setLoading] = createSignal(true);
     onMount(() => {
         document.title = "Favorites | Sinpie";
     });
     createEffect(async () => {
-        if (!user()) return setLoading(false);
+        if (!window.user()) return setLoading(false);
         setLoading(true);
         const res = await fetch(`${API_ENDPOINT}/user/favorites`, {
         method: "GET",
@@ -44,7 +42,7 @@ export default function FavoritesPage() {
 
     return (
         <section class="p-3">
-            <Show when={user()} fallback={<SingInCard title="Favorites" />}>
+            <Show when={window.user()} fallback={<SingInCard title="Favorites" />}>
 
         <h1 class="text-xl"> Your Favorites</h1>
         <Show when={!loading()} fallback={Loading}>

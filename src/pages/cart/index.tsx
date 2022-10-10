@@ -7,13 +7,11 @@ import FallBack from "../../components/common/Fallback";
 import { SingInCard } from "../../components/common/SingInCard";
 import CardCard from "../../components/Sinpie/CartCard";
 import Loading from "../../components/Sinpie/Loading";
-import { useUser } from "../../hooks/auth";
 import { Cart } from "../../types";
 import { API_ENDPOINT } from "../../utils/auth";
 
 const CartPage = () => {
     const [cart,setCart] = createSignal<Cart>(null);
-    const [user,something] = useUser();
     const [orderPlaced,setOrderPlaced] = createSignal(false);
     const [loading,setLoading] = createSignal(false);
 
@@ -31,7 +29,7 @@ const CartPage = () => {
         document.title = "Cart | Sinpie";
     })
     createEffect(async () => {
-        if(!user()) return;
+        if(!window.user()) return;
         setLoading(true);
         const res = await fetch(`${API_ENDPOINT}/cart`,{
             method: 'GET',

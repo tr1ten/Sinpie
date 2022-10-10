@@ -1,11 +1,12 @@
 import { useLocation } from "@solidjs/router";
-import { createEffect, createMemo, createSignal } from "solid-js";
+import { createEffect, createMemo, createSignal, onMount } from "solid-js";
 import { API_ENDPOINT } from "../utils/auth";
 
 // this is solid js hook
 export function useUser() {
   const [getUser, setUser] = createSignal(null);
   const refreshUser = () => {
+    console.log("fetching user info...");
     const token = sessionStorage.getItem("token");
     if (!token) return setUser(null);
     fetch(API_ENDPOINT + "/user", {
@@ -24,9 +25,6 @@ export function useUser() {
         setUser(null);
       });
   }
-  createEffect(() => {
-    // check token with server
-    refreshUser();
-  });
+  createEffect(()=>window.user = getUser);
   return [getUser,refreshUser];
 }

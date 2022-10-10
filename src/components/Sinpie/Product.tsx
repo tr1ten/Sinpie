@@ -2,7 +2,6 @@ import { Product as ProductType } from "./DisplayProducts";
 import { createEffect, createSignal, onMount } from "solid-js";
 import { AiOutlineHeart, AiFillHeart } from "solid-icons/ai";
 import { API_ENDPOINT, getToken } from "../../utils/auth";
-import { useUser } from "../../hooks/auth";
 import { useNavigate } from "@solidjs/router";
 type Props = {
   product: ProductType;
@@ -11,7 +10,6 @@ type Props = {
 
 export const Product = ({ product, fullWidth=false }: Props) => {
   const [isFav, isFavSetter] = createSignal(false);
-  const [user, refreshUser] = useUser();
   onMount(() => {
     try {
       fetch(API_ENDPOINT + `/${product.id}/favorite`, {
@@ -29,7 +27,7 @@ export const Product = ({ product, fullWidth=false }: Props) => {
   });
   function toggleFav() {
     isFavSetter(!isFav());
-    if (!user()) {
+    if (!window.user()) {
       return;
     }
     fetch(API_ENDPOINT + `/${product.id}/favorite`, {
