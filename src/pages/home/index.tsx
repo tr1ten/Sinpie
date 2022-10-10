@@ -1,13 +1,11 @@
 import { AiFillFire } from "solid-icons/ai";
 import {
   DisplayProducts,
-  Product,
 } from "../../components/Sinpie/DisplayProducts";
 import "./style.css";
 import Cascade1 from "../../../assets/cascade_1.jpg";
 import Cascade2 from "../../../assets/cascade_2.jpg";
 import Cascade3 from "../../../assets/cascade_3.jpg";
-import ProductImg from "../../../assets/prod.jpg";
 import { Carousel } from "solid-bootstrap";
 import { createSignal, onMount, Show } from "solid-js";
 import { API_ENDPOINT } from "../../utils/auth";

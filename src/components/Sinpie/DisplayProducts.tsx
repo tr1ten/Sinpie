@@ -16,6 +16,7 @@ export type Product = {
   image: string;
   ratings: number;
   productCategory: ProductCategory;
+  isFav: boolean;
 };
 
 type Props = {

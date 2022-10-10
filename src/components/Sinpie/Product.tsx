@@ -9,22 +9,7 @@ type Props = {
 };
 
 export const Product = ({ product, fullWidth=false }: Props) => {
-  const [isFav, isFavSetter] = createSignal(false);
-  onMount(() => {
-    try {
-      fetch(API_ENDPOINT + `/${product.id}/favorite`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + getToken(),
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => isFavSetter(data.favorite));
-    } catch (e) {
-      console.log("error ", e);
-    }
-  });
+  const [isFav, isFavSetter] = createSignal(product.isFav);
   function toggleFav() {
     isFavSetter(!isFav());
     if (!window.user()) {
