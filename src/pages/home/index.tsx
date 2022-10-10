@@ -2,7 +2,6 @@ import { AiFillFire } from "solid-icons/ai";
 import {
   DisplayProducts,
 } from "../../components/Sinpie/DisplayProducts";
-import "./style.css";
 import Cascade1 from "../../../assets/cascade_1.jpg";
 import Cascade2 from "../../../assets/cascade_2.jpg";
 import Cascade3 from "../../../assets/cascade_3.jpg";
