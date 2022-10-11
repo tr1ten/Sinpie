@@ -15,18 +15,35 @@ import { API_ENDPOINT } from "../../utils/auth";
 
 export default function ProductCategoryPage(): JSX.Element {
   const params = useParams();
+  console.log("loading page");
   const [query,setQuery] = useSearchParams();
+  const [isPcat, setIsPcat] = createSignal(true);
+  const [catString, setCatString] = createSignal("");
   const [products, setProducts] = createSignal<Product[]>([]);
-  const [productCategory, setProductCategory] = createSignal<ProductCategory>(null);
+  const [productCategory, setProductCategory] = createSignal<ProductCategory>(null);  
+  createEffect(() => {
+    setIsPcat(Boolean(params.pcat));
+  });
   // onMount doesn't work if state is changing
   createEffect(() => {
+    if(isPcat()) setCatString(`pcat=${params.pcat}`);
+    else setCatString(`acat=${params.acat}`);
+  });
+  createEffect(() => {
     const price = `sortBy=price-${query.price}`;
-    fetch(`${API_ENDPOINT}/products/?pcat=${params.pcat}${query.price ? '&'+price : ''}`)
+    fetch(`${API_ENDPOINT}/products/?${catString()}${query.price ? '&'+price : ''}`)
       .then((res) => res.json())
       .then(({ products }) => setProducts(products));
   });
   createEffect(() => {
-    const pcat= products()[0]?.productCategory;
+    let pcat;
+    if(isPcat()){
+      pcat= products()[0]?.productCategory;
+    }
+    else{ 
+      pcat= products()[0]?.animeCategory;
+
+    }
     if(pcat) {document.title = pcat.label;} 
     setProductCategory(pcat);
 

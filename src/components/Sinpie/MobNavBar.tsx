@@ -73,7 +73,11 @@ function MenuOverlay(props: Props) {
               }
             >
               <For each={props.animeCats()}>
-                {(cat) => <DropDownItem>{cat.label}</DropDownItem>}
+                {(cat) => <DropDownItem
+                    href={"/anime-category/" + cat.slug}
+                >
+                  {cat.label}
+                  </DropDownItem>}
               </For>
             </NavItem>
           </ul>

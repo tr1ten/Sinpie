@@ -1,4 +1,4 @@
-import { Product } from "../components/Sinpie/DisplayProducts";
+import { AnimeCategory, Product, ProductCategory } from "../components/Sinpie/DisplayProducts";
 
 export type AuthForm = {
     email: string;
@@ -19,8 +19,8 @@ export type Cart = {
 }
 
 export type NavProps = {
-    itemCats: () => Array<{ label: string; slug: string; }>;
-    animeCats: () => Array<{ label: string; slug: string; }>;
+    itemCats: () => Array<ProductCategory>;
+    animeCats: () => Array<AnimeCategory>;
     isLogin: () => boolean;
     user: () => any;
     onLogout: () => void;

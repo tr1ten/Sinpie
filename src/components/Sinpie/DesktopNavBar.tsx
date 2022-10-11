@@ -28,10 +28,13 @@ export const DesktopNavBar = (props: NavProps): JSX.Element => {
       </NavItem>
       <NavItem
         text="Animes"
-        icon={<FaSolidChevronDown class="s-icon" fill="red" size="1rem" />}
+        icon={<FaSolidChevronDown 
+          class="s-icon" fill="red" size="1rem" />}
       >
         <For each={props.animeCats()}>
-          {(cat) => <DropDownItem>{cat.label}</DropDownItem>}
+          {(cat) => <DropDownItem
+          href={"/anime-category/" + cat.slug}
+          >{cat.label}</DropDownItem>}
         </For>
       </NavItem>
     </ul>

@@ -148,6 +148,7 @@ body {
 }
 .dropdown-container.show {
   @apply rounded-sm border py-3;
+  width: max-content;
   opacity: 1;
   visibility: visible;
   max-height: 200px;

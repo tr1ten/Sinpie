@@ -7,6 +7,12 @@ export type ProductCategory = {
   slug:string;
 }
 
+export type AnimeCategory = {
+  id: number;
+  label: string;
+  slug:string;
+}
+
 export type Product = {
   id: number;
   shopUrl: string;
