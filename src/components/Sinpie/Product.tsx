@@ -3,6 +3,7 @@ import { createEffect, createSignal, onMount } from "solid-js";
 import { AiOutlineHeart, AiFillHeart } from "solid-icons/ai";
 import { API_ENDPOINT, getToken } from "../../utils/auth";
 import { useNavigate } from "@solidjs/router";
+import Rating from "./Rating";
 type Props = {
   product: ProductType;
   fullWidth?: boolean;
@@ -45,8 +46,11 @@ export const Product = ({ product, fullWidth=false }: Props) => {
       <div
       onClick={() => navigate("/product/" + product.id)}
 
-       class="product-info">
+       class="product-info flex flex-col items-center">
         <p>{product.label}</p>
+        <div class="m-auto p-2">
+          <Rating rating={product?.rating || Math.floor(Math.random() * 5) + 1} />
+        </div>
         <p>₹{product.price}</p>
       </div>
     </div>
