@@ -20,7 +20,7 @@ export type Product = {
   price: number;
   description: string;
   image: string;
-  ratings: number;
+  rating: number;
   productCategory: ProductCategory;
   isFav: boolean;
 };
@@ -30,7 +30,7 @@ type Props = {
 };
 export const DisplayProducts = (props: Props) => {
   return (
-    <section class="hot-container p-3">
+    <section class="flex flex-wrap justify-center items-stretch">
       <For each={props.products}>{(product) => <Product product={product} />}</For>
     </section>
   );

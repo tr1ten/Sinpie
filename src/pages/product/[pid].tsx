@@ -29,7 +29,6 @@ export function ProductPage(): JSX.Element {
         .then(({products})=>setSimilarProducts(products));
     },product)
     // temperary rating random 1 to 5
-    const rating = Math.random() * 5;
     // temperary shop url
     const shopUrl = "https://comicsense.in";
     return <Show when={product()} fallback={Loading}>
@@ -41,11 +40,11 @@ export function ProductPage(): JSX.Element {
             <div class="m-6 flex flex-col">
                 <h1 class="text-xl">{product().label}</h1>
                 <a href={shopUrl} class="text-blue-400 font-medium underline">comic sense</a>
-                <Rating rating={rating} />
+                <Rating rating={product()?.rating || Math.floor(Math.random() * 5) + 1} />
                 {ActionCard(product)}
                 <p class="font-bold underline text-blue-400"> </p>
                 <h2 class="text-lg">About this item</h2>
-                <p>{product().description}</p>
+                <p>{decodeURI(product().description)}</p>
 
             </div>
         </section>

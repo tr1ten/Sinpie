@@ -33,7 +33,7 @@ const AuthPage = () => {
   const onFormSubmit = async (e: Event) => {
     e.preventDefault();
     if (!form.email || !form.password || (register() && !form.name)) {
-      setError("not valid form");
+      setError("Please enter valid details");
       return;
     }
     if (register() && form.password != confirmPass()) {

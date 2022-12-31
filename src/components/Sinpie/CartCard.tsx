@@ -10,7 +10,7 @@ import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
 
 
-const CardCard = (props: {mycart: Cart,onOrder:()=>void}) => {
+const CartCard = (props: {mycart: Cart,onOrder:()=>void}) => {
     const [cart,setCart] = createSignal<Cart>(props.mycart);
     const [total,setTotal] = createSignal(0);
     const [loading,setLoading] = createSignal(false);
@@ -81,4 +81,4 @@ const CardCard = (props: {mycart: Cart,onOrder:()=>void}) => {
 
     </Show>
 }
-export default CardCard;
+export default CartCard;

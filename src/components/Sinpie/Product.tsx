@@ -47,7 +47,7 @@ export const Product = ({ product, fullWidth=false }: Props) => {
 
        class="product-info">
         <p>{product.label}</p>
-        <p>${product.price}</p>
+        <p>₹{product.price}</p>
       </div>
     </div>
   );

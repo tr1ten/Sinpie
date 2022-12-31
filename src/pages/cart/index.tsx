@@ -5,7 +5,7 @@ import { Col, Form, Row, Card, Button, Alert } from "solid-bootstrap";
 import { createEffect, createSignal, onMount, Show } from "solid-js";
 import FallBack from "../../components/common/Fallback";
 import { SingInCard } from "../../components/common/SingInCard";
-import CardCard from "../../components/Sinpie/CartCard";
+import CartCard from "../../components/Sinpie/CartCard";
 import Loading from "../../components/Sinpie/Loading";
 import { Cart } from "../../types";
 import { API_ENDPOINT } from "../../utils/auth";
@@ -45,7 +45,7 @@ const CartPage = () => {
         <Show when={cart()} fallback={<SingInCard title="Cart" />}>
         <section class="p-3">
             <h1 class="text-xl"> Your Cart</h1>
-            <CardCard onOrder={handleOrder} mycart={cart()}/>
+            <CartCard onOrder={handleOrder} mycart={cart()}/>
             <Show when={orderPlaced()}>
             <Alert class="m-2" variant="success">
             <Alert.Heading>Order Placed!</Alert.Heading>
