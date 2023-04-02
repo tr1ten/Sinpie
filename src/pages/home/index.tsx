@@ -24,13 +24,13 @@ export const Home = () => {
     <main>
       <Carousel controls={false}>
         <Carousel.Item>
-          <img src={Cascade1} alt="cascade-1" />
+          <img class="w-full" src={Cascade1} alt="cascade-1" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={Cascade2} alt="cascade-2" />
+          <img  class="w-full"src={Cascade2} alt="cascade-2" />
         </Carousel.Item>
         <Carousel.Item>
-        <img src={Cascade3} alt="cascade-3" />
+        <img class="w-full" src={Cascade3} alt="cascade-3" />
         </Carousel.Item>
       </Carousel>
       <div class="hot-div">
