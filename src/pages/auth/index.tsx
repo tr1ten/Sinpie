@@ -56,10 +56,13 @@ const AuthPage = () => {
     if(window.refreshUser) {window.refreshUser();}
   };
   return (
-    <main >
-      <Card class="d-flex justify-center mx-auto w-3/6  p-2 my-4">
-        <Card.Header class="text-center m-2 font-bold bg-transparent">
-          {register() ? "Register" : "Sign In"}
+    <main class="flex items-center">
+      <Card class="d-flex justify-center mx-auto w-5/6 md:w-3/6 xl:w-2/6  p-2 my-4">
+        <Card.Header class="text-center m-2  text-2xl font-bold bg-transparent">
+          Sinpie {register() ? "Register" : "Login"}
+        <Card.Subtitle
+        class="text-center m-2 text-sm"
+        > Hey, enter your details to login into sinpie account</Card.Subtitle>
         </Card.Header>
         <Card.Body>
           {error().length > 0 && <Alert>{error()}</Alert>}
@@ -67,8 +70,9 @@ const AuthPage = () => {
             <Show when={register()}>
               <Form.Group
                 as={Row}
-                class="mb-3"
+                class="mb-3 "
                 controlId="formPlaintextName"
+                
               >
                 <Form.Label column sm="2">
                   Name
@@ -82,7 +86,7 @@ const AuthPage = () => {
                 </Col>
               </Form.Group>
             </Show>
-            <Form.Group as={Row} class="mb-3" controlId="formPlaintexMail">
+            <Form.Group as={Row} class="mb-3 " controlId="formPlaintexMail">
               <Form.Label column sm="2">
                 Email
               </Form.Label>
@@ -96,7 +100,7 @@ const AuthPage = () => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} class="mb-3" controlId="formPlaintextPassword">
+            <Form.Group as={Row} class="mb-3 " controlId="formPlaintextPassword">
               <Form.Label column sm="2">
                 Password
               </Form.Label>
@@ -112,7 +116,7 @@ const AuthPage = () => {
             {register() && (
               <Form.Group
                 as={Row}
-                class="mb-3"
+                class="mb-3 "
                 controlId="formPlaintextConfirmPassword"
               >
                 <Form.Label column sm="2">
@@ -129,12 +133,12 @@ const AuthPage = () => {
                 </Col>
               </Form.Group>
             )}
-            <Button disabled={submitStatus()==1} variant="success" class="bg-slate-700" type="submit">
+            <button disabled={submitStatus()==1} class="bg-t-red-500 rounded-md  w-full p-2 my-3 text-white" type="submit">
               Submit
-            </Button>
+            </button>
           </Form>
         </Card.Body>
-        <Card.Footer class="bg-transparent text-sm">
+        <Card.Footer class="bg-transparent text-sm hover:cursor-pointer">
           <Show when={register()}>
             Already have an account?{" "}
             <a
