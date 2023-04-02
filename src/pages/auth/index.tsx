@@ -10,6 +10,7 @@ import {
 import { Col, Form, Row, Card, Button, Alert } from "solid-bootstrap";
 import { createEffect, createSignal, onMount, Show } from "solid-js";
 import { createStore } from "solid-js/store";
+import Loading from "../../components/Sinpie/Loading";
 import { AuthForm } from "../../types";
 import { loginUser, registerUser } from "../../utils/auth";
 
@@ -56,13 +57,16 @@ const AuthPage = () => {
     if(window.refreshUser) {window.refreshUser();}
   };
   return (
-    <main class="flex items-center">
+    <main 
+    class="flex items-center my-10">
       <Card class="d-flex justify-center mx-auto w-5/6 md:w-3/6 xl:w-2/6  p-2 my-4">
         <Card.Header class="text-center m-2  text-2xl font-bold bg-transparent">
           Sinpie {register() ? "Register" : "Login"}
         <Card.Subtitle
         class="text-center m-2 text-sm"
-        > Hey, enter your details to login into sinpie account</Card.Subtitle>
+        > Hey, enter your details to 
+        {register() ? " register" : " login"}
+        {" "} into sinpie account</Card.Subtitle>
         </Card.Header>
         <Card.Body>
           {error().length > 0 && <Alert>{error()}</Alert>}
@@ -70,14 +74,14 @@ const AuthPage = () => {
             <Show when={register()}>
               <Form.Group
                 as={Row}
-                class="mb-3 "
+                class="mb-3 flex-col"
                 controlId="formPlaintextName"
                 
               >
-                <Form.Label column sm="2">
+                <Form.Label >
                   Name
                 </Form.Label>
-                <Col sm="10">
+                <Col >
                   <Form.Control
                     value={form.name}
                     onChange={(e) => setForm({ name: e.currentTarget.value })}
@@ -86,11 +90,11 @@ const AuthPage = () => {
                 </Col>
               </Form.Group>
             </Show>
-            <Form.Group as={Row} class="mb-3 " controlId="formPlaintexMail">
-              <Form.Label column sm="2">
+            <Form.Group as={Row} class="mb-3 flex-col" controlId="formPlaintexMail">
+              <Form.Label >
                 Email
               </Form.Label>
-              <Col sm="10">
+              <Col >
                 <Form.Control
                   value={form.email}
                   onChange={(e) => setForm({ email: e.currentTarget.value })}
@@ -100,11 +104,11 @@ const AuthPage = () => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} class="mb-3 " controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
+            <Form.Group as={Row} class="mb-3 flex-col" controlId="formPlaintextPassword">
+              <Form.Label >
                 Password
               </Form.Label>
-              <Col sm="10">
+              <Col >
                 <Form.Control
                   value={form.password}
                   onChange={(e) => setForm({ password: e.currentTarget.value })}
@@ -116,13 +120,13 @@ const AuthPage = () => {
             {register() && (
               <Form.Group
                 as={Row}
-                class="mb-3 "
+                class="mb-3 flex-col"
                 controlId="formPlaintextConfirmPassword"
               >
-                <Form.Label column sm="2">
+                <Form.Label >
                   Confirm Passowrd
                 </Form.Label>
-                <Col sm="10">
+                <Col >
                   <Form.Control
                     value={confirmPass()}
                     onChange={(e) => setConfirmPass(e.currentTarget.value)}
@@ -133,14 +137,14 @@ const AuthPage = () => {
                 </Col>
               </Form.Group>
             )}
-            <button disabled={submitStatus()==1} class="bg-t-red-500 rounded-md  w-full p-2 my-3 text-white" type="submit">
+            <button disabled={submitStatus()==1} class="bg-t-red-500 rounded-md disabled:bg-t-red-400 disabled:text-gray-500 w-full p-2 my-3 text-white" type="submit">
               Submit
             </button>
           </Form>
         </Card.Body>
         <Card.Footer class="bg-transparent text-sm hover:cursor-pointer">
           <Show when={register()}>
-            Already have an account?{" "}
+            Already a member?{" "}
             <a
               onClick={() => setQuery({ register: false })}
               class="font-semibold"
@@ -149,12 +153,12 @@ const AuthPage = () => {
             </a>
           </Show>
           <Show when={!register()}>
-            Don't have an account?{" "}
+            Not a member?{" "}
             <a
               onClick={() => setQuery({ register: true })}
               class="font-semibold"
             >
-              Register
+              Sign Up
             </a>
           </Show>
         </Card.Footer>
