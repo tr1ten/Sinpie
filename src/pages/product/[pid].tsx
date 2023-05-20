@@ -98,25 +98,34 @@ function ActionCard(product:Accessor<Product>) {
             })
         }).then(()=>setQuantity(quantity()+1) && setLoading(false));
     }
-    return <Card class="mt-3 mb-3">
-        <Card.Body class="flex flex-col">
+    return <Card class="mt-3 mb-3 ">
+        <Card.Body class="flex flex-col gap-2">
             <Price price={product().price} />
+            {/* Show  info*/}
+            <div
+            class="text-sm"
+            >
+            <p class="text-gray-500">Inclusive of all taxes</p>
+            <p class="text-gray-500">FREE delivery: <span class="text-black">Sunday, 
+            {new Date().getDate() + 1} {new Date().toLocaleString('default', { month: 'long' })}
+             </span></p>
+            <p class="text-green-600">In Stock.</p>
+            </div>
+            <Button  onClick={buyNow}
+            class="border-none hover:bg-red-500 bg-red-600 text-white"
+            >
+                Buy now
+            </Button>
             <Button
             disabled={loading() || disabled()}
             variant="none"
             onClick={addToCart}
-            class="bg-orange-600 hover:bg-orange-600 cbtn">
+            class=" border-1 border-gray-500 ">
                 <span>Add{disabled() && "ed"} to cart
                     {
-                        disabled()  ? <TiTick class="ico" />
-                    :   <FaSolidCartShopping class="ico" />
+                        disabled()  && <TiTick class="ico" />
                     }
                 </span>     
-            </Button>
-            <Button variant="none" onClick={buyNow} class="cbtn hover:bg-yellow-600 bg-yellow-600 mt-2">
-                <span>Buy now
-                    <FaSolidForward class="ico" />
-                </span>
             </Button>
         </Card.Body>
     </Card>;
