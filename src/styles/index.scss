@@ -86,7 +86,7 @@ body {
 }
 .links-section {
   min-width: 70%;
-  @apply flex flex-row;
+  @apply flex flex-row items-start;
 }
 
 // home page

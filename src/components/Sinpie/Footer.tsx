@@ -6,32 +6,37 @@ export const Footer = () => {
        <div class="footer-main">
        <div class="links-section">
        <div class="links support-links">
-            <h4 class="footer-title">Support</h4>
-            <a class="footer-item" href="#">FAQ</a>
-            <a class="footer-item" href="#">Return Policy</a>
-            <a class="footer-item" href="#">Track Order</a>
-            <a class="footer-item" href="#">Contact Us</a>
+            <h4 class="footer-title">Contributors</h4>
+            <a class="footer-item" href="
+                https://github.com/tr1ten
+            ">Shubh (tr1ten) </a>
         </div>
         <div class="links quick-links">
             <h4 class="footer-title">Quick Links</h4>
-            <a class="footer-item" href="#">Trending</a>
-            <a class="footer-item" href="#">New Arrivals</a>
-            <a class="footer-item" href="#">Anime</a>
-            <a class="footer-item" href="#">Manga</a>
-            <a class="footer-item" href="#">About Us</a>
+            <a class="footer-item" href="/product-category/hats">Trending</a>
+            <a class="footer-item" href="/anime-category/naruto">Anime</a>
+            <a class="footer-item" href="/anime-category/one-piece">Manga</a>
+            <a class="footer-item" href="https://github.com/tr1ten/Sinpie">About Us</a>
         </div>
         <div class="links stores-link">
             <h4 class="footer-title">Stores</h4>
-            <a class="footer-item" href="#">Amazon</a>
-            <a class="footer-item" href="#">Ebay</a>
-            <a class="footer-item" href="#">Walmart</a>
-            <a class="footer-item" href="#">Best Buy</a>
+            <a class="footer-item" href="https://www.redwolf.in/anime-merchandise-india">
+                Red Wolfs
+            </a>
+            <a class="footer-item" href="https://www.kiayaaccessories.com/">Kiaya Accessories    </a>
+            <a class="footer-item" href="https://www.comicsense.store/">Comic Sense</a>
         </div>
        </div>
        <div class="social-links flex flex-row justify-center">
-        <a class="social-link" href="#"> <FaBrandsFacebook /></a>
-        <a class="social-link" href="#"> <FaBrandsTwitter /></a>
-        <a class="social-link" href="#"> <AiFillInstagram /></a>
+        <a class="social-link" href="
+            https://www.facebook.com
+        "> <FaBrandsFacebook /></a>
+        <a class="social-link" href="
+            https://www.twitter.com
+        "> <FaBrandsTwitter /></a>
+        <a class="social-link" href="
+            https://www.instagram.com
+        "> <AiFillInstagram /></a>
         </div>
        </div>
     <div class="footer-bottom">

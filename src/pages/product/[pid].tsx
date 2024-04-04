@@ -44,7 +44,7 @@ export function ProductPage(): JSX.Element {
                 {ActionCard(product)}
                 <p class="font-bold underline text-blue-400"> </p>
                 <h2 class="text-lg">About this item</h2>
-                <p>{decodeURI(product().description)}</p>
+                <p>{(product()?.description || "No Description available for this item")}</p>
 
             </div>
         </section>
@@ -81,6 +81,7 @@ function ActionCard(product:Accessor<Product>) {
     // redirect user when click on buy now button
     const buyNow = () => {
         window.location.href = product().shopUrl;
+        
     }
     const addToCart = () => {
         if(!window.user()) window.location.href = '/auth';
