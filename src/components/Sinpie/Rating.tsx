@@ -1,14 +1,45 @@
-import { FaSolidStar,FaSolidStarHalf } from "solid-icons/fa";
-// this component displays a ratings bar for a given rating
-export default function Rating({rating}:{rating:number}){
+import { FaSolidStar, FaSolidStarHalf, FaRegularStar } from "solid-icons/fa";
+
+type RatingProps = {
+    rating: number;
+    onSelect?: (rating: number) => void;
+    readonly?: boolean;
+};
+
+export default function Rating({ rating, onSelect, readonly = true }: RatingProps) {
+    const handleClick = (index: number) => {
+        if (!readonly && onSelect) {
+            onSelect(index + 1);
+        }
+    };
+
     const stars = [];
-    while(rating>=1){
-            stars.push(<FaSolidStar class="r-icon" size="1rem" />);
-            rating-=1;
+    for (let i = 0; i < 5; i++) {
+        if (i < Math.floor(rating)) {
+            stars.push(
+                <FaSolidStar 
+                    class={`r-icon ${!readonly ? 'cursor-pointer' : ''}`} 
+                    size="1.5rem" 
+                    onClick={() => handleClick(i)}
+                />
+            );
+        } else if (i === Math.floor(rating) && rating % 1 >= 0.5) {
+            stars.push(
+                <FaSolidStarHalf 
+                    class={`r-icon ${!readonly ? 'cursor-pointer' : ''}`} 
+                    size="1.5rem" 
+                    onClick={() => handleClick(i)}
+                />
+            );
+        } else {
+            stars.push(
+                <FaRegularStar 
+                    class={`r-icon ${!readonly ? 'cursor-pointer' : ''}`} 
+                    size="1.5rem" 
+                    onClick={() => handleClick(i)}
+                />
+            );
+        }
     }
-    if(rating>=0.5){
-        stars.push(<FaSolidStarHalf class="r-icon" size="1rem" />);
-        rating-=0.5;
-    }
-    return <div class="flex flex-row pt-1 pb-1">{stars}</div>
+    return <div class="flex flex-row pt-1 pb-1">{stars}</div>;
 }
