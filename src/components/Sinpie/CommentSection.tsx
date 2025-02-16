@@ -5,7 +5,7 @@ import { useParams } from "@solidjs/router";
 import { API_ENDPOINT } from "../../utils/auth";
 import Rating from "./Rating";
 import { Button, Form } from "solid-bootstrap";
-import { FaSolidXmark } from "solid-icons/fa";
+import { FaSolidXmark, FaSolidPencil, FaSolidTrash } from "solid-icons/fa";
 
 type Review = {
     id: string;
@@ -337,19 +337,21 @@ export function CommentSection() {
                                         review.user.id === window.user()?.id
                                     }>
                                         <div class="flex gap-2">
-                                            <Button
+                                            <button
                                                 onClick={() => setEditingReview(review)}
-                                                class="text-blue-600 hover:text-blue-800"
+                                                class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded-full transition-colors"
+                                                title="Edit review"
                                             >
-                                                Edit
-                                            </Button>
-                                            <Button
+                                                <FaSolidPencil size={16} />
+                                            </button>
+                                            <button
                                                 onClick={() => handleDelete(review)}
-                                                class="text-red-600 hover:text-red-800"
+                                                class="p-2 text-red-600 hover:text-red-800 hover:bg-red-100 rounded-full transition-colors"
                                                 disabled={loading()}
+                                                title="Delete review"
                                             >
-                                                Delete
-                                            </Button>
+                                                <FaSolidTrash size={16} />
+                                            </button>
                                         </div>
                                     </Show>
                                 </div>
