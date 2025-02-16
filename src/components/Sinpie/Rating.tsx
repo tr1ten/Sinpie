@@ -1,4 +1,5 @@
-import { FaSolidStar, FaSolidStarHalf, FaRegularStar } from "solid-icons/fa";
+import { FaSolidStar, FaRegularStar } from "solid-icons/fa";
+import { createSignal, Show } from "solid-js";
 
 type RatingProps = {
     rating: number;
@@ -7,39 +8,58 @@ type RatingProps = {
 };
 
 export default function Rating({ rating, onSelect, readonly = true }: RatingProps) {
-    const handleClick = (index: number) => {
-        if (!readonly && onSelect) {
-            onSelect(index + 1);
-        }
+    const [hoverRating, setHoverRating] = createSignal(0);
+    const [selectedRating, setSelectedRating] = createSignal(rating);
+
+    const handleMouseMove = (index: number) => {
+        if (readonly) return;
+        setHoverRating(index + 1);
     };
 
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-        if (i < Math.floor(rating)) {
-            stars.push(
-                <FaSolidStar 
-                    class={`r-icon ${!readonly ? 'cursor-pointer' : ''}`} 
-                    size="1.5rem" 
+    const handleClick = (index: number) => {
+        if (readonly) return;
+        const newRating = index + 1;
+        setSelectedRating(newRating);
+        onSelect?.(newRating);
+    };
+
+    const handleMouseLeave = () => {
+        if (readonly) return;
+        setHoverRating(0);
+    };
+
+    const getStarRating = (index: number) => {
+        if (readonly) return index < rating;
+        return index < (hoverRating() || selectedRating());
+    };
+
+    return (
+        <div 
+            class="flex flex-row pt-1 pb-1"
+            onMouseLeave={handleMouseLeave}
+        >
+            {Array.from({ length: 5 }, (_, i) => (
+                <div
+                    class={`inline-block ${!readonly ? 'cursor-pointer' : ''}`}
+                    onMouseMove={() => handleMouseMove(i)}
                     onClick={() => handleClick(i)}
-                />
-            );
-        } else if (i === Math.floor(rating) && rating % 1 >= 0.5) {
-            stars.push(
-                <FaSolidStarHalf 
-                    class={`r-icon ${!readonly ? 'cursor-pointer' : ''}`} 
-                    size="1.5rem" 
-                    onClick={() => handleClick(i)}
-                />
-            );
-        } else {
-            stars.push(
-                <FaRegularStar 
-                    class={`r-icon ${!readonly ? 'cursor-pointer' : ''}`} 
-                    size="1.5rem" 
-                    onClick={() => handleClick(i)}
-                />
-            );
-        }
-    }
-    return <div class="flex flex-row pt-1 pb-1">{stars}</div>;
+                >
+                    <Show
+                        when={getStarRating(i)}
+                        fallback={
+                            <FaRegularStar 
+                                class="r-icon" 
+                                size="1.5rem"
+                            />
+                        }
+                    >
+                        <FaSolidStar 
+                            class="r-icon" 
+                            size="1.5rem"
+                        />
+                    </Show>
+                </div>
+            ))}
+        </div>
+    );
 }
